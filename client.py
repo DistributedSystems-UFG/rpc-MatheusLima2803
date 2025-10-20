@@ -1,9 +1,16 @@
 import rpyc
-from constRPYC import * #-
+from constRPYC import HOST, PORTA
 
-class Client:
-  conn = rpyc.connect(SERVER, PORT) # Connect to the server
-  print (conn.root.exposed_value())
-  conn.root.exposed_append(5)       # Call an exposed operation,
-  conn.root.exposed_append(6)       # and append two elements
-  print (conn.root.exposed_value())   # Print the result
+conexao = rpyc.connect(HOST, PORTA)
+remoto = conexao.root
+
+print(remoto.adicionar("banana"))
+print(remoto.adicionar("maçã"))
+print(remoto.inserir(1, "laranja"))
+print(remoto.valor())
+print(remoto.pesquisar("maçã"))
+print(remoto.remover("banana"))
+print(remoto.ordenar())
+print(remoto.valor())
+
+conexao.close()
